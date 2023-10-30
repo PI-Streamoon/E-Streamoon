@@ -39,3 +39,15 @@ ggplot(crawlerData, aes(x = cpuPercent, y = ramPercent)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
   labs(x = "Temperatura", y = "Uso de RAM")
+
+#MATRIZ DE CORRELAÇÃO
+testeCDN <- read.csv("testeCDN.csv")
+
+install.packages("corrplot")
+
+library(corrplot)
+
+m<-cor(testeCDN[3:12])
+corrplot(m, method = "color",
+         + type="upper",
+         + addCoef.col = "black", insig = "blank", diag=FALSE)
