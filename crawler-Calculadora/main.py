@@ -79,10 +79,11 @@ for i in urls:
 
         for region, region_data in data.get("regions", {}).items():
             try:
-                locais(region)
 
-
-                fkLocais = selecLocais(region)[0]
+                if selecLocais(region)[0] <= 100:
+                    locais(region)
+                else:
+                    fkLocais = selecLocais(region)[0]
 
             except mysql.connector.errors as error:
                 print("Failed to insert record into table {}".format(error))
