@@ -69,7 +69,24 @@ def selecLocais(region: str):
     resultado = cursor.fetchall()
     cursor.close()
 
-    return resultado[0]
+    return resultado[0] if resultado else None
+
+def truncate():
+    mysql_truncate = "TRUNCATE TABLE dadosec2;"
+    cursor = con.cursor()
+    cursor.execute(mysql_truncate)
+
+    con.commit()
+    cursor.close()
+
+try:
+
+    truncate()
+
+except mysql.connector.Error as error:
+        
+        print(f"Erro ao truncar a tabela dadosec2: {error}")
+        
 
 for i in urls:
     response = requests.get(i)
@@ -80,9 +97,10 @@ for i in urls:
         for region, region_data in data.get("regions", {}).items():
             try:
 
-                if selecLocais(region)[0] <= 100:
-                    locais(region)
+                if selecLocais(region) is not None:
+                    fkLocais = selecLocais(region)[0]
                 else:
+                    locais(region)
                     fkLocais = selecLocais(region)[0]
 
             except mysql.connector.errors as error:
