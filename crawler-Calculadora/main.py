@@ -31,7 +31,38 @@ urls = [
     "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Asia%20Pacific%20(Sydney)/OnDemand/Shared/Linux/NA/No%20License%20required/Yes/index.json",
     "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Asia%20Pacific%20(Tokyo)/OnDemand/Shared/Linux/NA/No%20License%20required/Yes/index.json",
     "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/AWS%20GovCloud%20(US-East)/OnDemand/Shared/Linux/NA/No%20License%20required/Yes/index.json",
-    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/AWS%20GovCloud%20(US)/OnDemand/Shared/Linux/NA/No%20License%20required/Yes/index.json"
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/AWS%20GovCloud%20(US)/OnDemand/Shared/Linux/NA/No%20License%20required/Yes/index.json",
+
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Canada%20(Central)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/US%20East%20(N.%20Virginia)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/US%20East%20(Ohio)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/US%20West%20(N.%20California)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/US%20West%20(Oregon)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/South%20America%20(Sao%20Paulo)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/EU%20(Spain)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/EU%20(Stockholm)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/EU%20(Frankfurt)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/EU%20(Ireland)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/EU%20(London)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/EU%20(Milan)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/EU%20(Paris)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/EU%20(Zurich)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Israel%20(Tel%20Aviv)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Middle%20East%20(Bahrain)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Middle%20East%20(UAE)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Africa%20(Cape%20Town)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Asia%20Pacific%20(Hong%20Kong)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Asia%20Pacific%20(Hyderabad)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Asia%20Pacific%20(Jakarta)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Asia%20Pacific%20(Melbourne)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Asia%20Pacific%20(Mumbai)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Asia%20Pacific%20(Osaka)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Asia%20Pacific%20(Seoul)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Asia%20Pacific%20(Singapore)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Asia%20Pacific%20(Sydney)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Asia%20Pacific%20(Tokyo)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/AWS%20GovCloud%20(US-East)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json",
+    "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/AWS%20GovCloud%20(US)/OnDemand/Shared/Windows/NA/No%20License%20required/Yes/index.json"
        ]
 
 
@@ -107,7 +138,12 @@ for i in urls:
                 print("Failed to insert record into table {}".format(error))
 
             for service_name, service_details in region_data.items():
-                modified_service_detail = service_name.replace("OnDemand Shared Linux No License required Yes Hrs", "")
+                if 'OnDemand Shared Linux No License required Yes Hrs' in service_name:
+
+                    modified_service_detail = service_name.replace("OnDemand Shared Linux No License required Yes Hrs", "")
+                else:
+                    modified_service_detail = service_name.replace("OnDemand Shared Windows No License required Yes Hrs", "")
+
                 tipo = modified_service_detail
 
                 for key, value in service_details.items():
