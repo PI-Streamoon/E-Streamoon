@@ -1,0 +1,38 @@
+------------------------------------------------------------------------
+alertas.py é onde está todos os alertas que serão enviados ao slack
+para que esses alertas sejam enviados basta chamar a função:
+Ex: alertas.enviarAlertaCpu(Passar a url do webhook, passar 0 ou 1)
+No caso a url fica salva dentro de uma variável para que seja mais fácil
+alterar a webhook caso seja necessário.
+0 siginifica que esse alerta foi enviado para a equipe de manutenção,
+1 siginifica que esse alerta foi enviado para o analista.
+
+Em alertas.py possui uma variável booleana para ativar mensagem de erro
+no terminal, caso ocorra algum erro no envio de um alerta para o slack,
+basta colocá-la como True
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+bancoDao.py é onde é feito todos os comandos para o mySQL, como inserts
+no banco e a captura dos dados mais recentes que estão salvos lá.
+
+Em bancoDao.py possui uma varável booleana como ambienteDesenvolvimento,
+nele você pode alterar os comandos que serão executados, caso esteja
+True então comandos mySQL serão executados, caso contrário os comandos
+serão executados para SQL Server.
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+monitoramento.py é onde de fato será rodado a aplicação, ele é a "main"
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+testeConexao.py, como o nome diz, é para testar a conexão com o slack
+recomendo rodar ele para verificar se a webhook ainda está ativa, caso
+não esteja, ele falará o motivo.
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+testeBanco.py é onde você poderá testar a sua conexão com o banco de
+dados.
+------------------------------------------------------------------------
