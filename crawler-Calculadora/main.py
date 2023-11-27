@@ -1,5 +1,6 @@
 import requests
 import mysql.connector
+import pyodbc
 
 urls = [
     "https://calculator.aws/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-calc/Canada%20(Central)/OnDemand/Shared/Linux/NA/No%20License%20required/Yes/index.json",
@@ -73,6 +74,15 @@ con = mysql.connector.connect(
                     password='Moon2023'
                 )
 
+conSQLServer = pyodbc.connect(
+            'DRIVER={SQL Server};'
+            'SERVER=18.208.1.120;'
+            'DATABASE=streamoon;'
+            'UID=StreamoonUser;'
+            'PWD=Moon2023;'
+            'TrustServerCertificate=yes;'
+        )
+
 def dadosEC2(tipo: str, vCPU: int, preco: float, so: str, memoria: float, fkLocais: int):
     mySql_insert = f"INSERT INTO dadosec2 VALUES (NULL ,'{tipo}', {vCPU}, {preco}, '{so}', {memoria}, {fkLocais});"
 
@@ -80,8 +90,15 @@ def dadosEC2(tipo: str, vCPU: int, preco: float, so: str, memoria: float, fkLoca
     cursor.execute(mySql_insert)
 
     con.commit()
-    cursor.close()
+    
+    cursorSQL = conSQLServer.cursor()
+    cursorSQL.execute(mySql_insert)
 
+    conSQLServer.commit()
+    
+    cursorSQL.close()
+    cursor.close()
+    
 def locais(region: str):
     mySql_insert = f"INSERT INTO locais (fkEmpresa, descricao)VALUES (1, '{region}');"
 
@@ -89,7 +106,14 @@ def locais(region: str):
     cursor.execute(mySql_insert)
 
     con.commit()
+    
+    cursorSQL = conSQLServer.cursor()
+    cursorSQL.execute(mySql_insert)
+
+    conSQLServer.commit()
+    
     cursor.close()
+    cursorSQL.close()
 
 def selecLocais(region: str):
     mySql_select = f"SELECT idLocais FROM locais WHERE descricao = '{region}';"
@@ -98,6 +122,13 @@ def selecLocais(region: str):
     cursor.execute(mySql_select)
 
     resultado = cursor.fetchall()
+    
+    cursorSQL = conSQLServer.cursor()
+    cursorSQL.execute(mySql_select)
+
+    resultadoSLQ = cursorSQL.fetchall()
+
+    cursorSQL.close()    
     cursor.close()
 
     return resultado[0] if resultado else None
@@ -108,7 +139,14 @@ def truncate():
     cursor.execute(mysql_truncate)
 
     con.commit()
+    
+    cursorSQL = conSQLServer.cursor()
+    cursorSQL.execute(mysql_truncate)
+
+    conSQLServer.commit()
+    
     cursor.close()
+    cursorSQL.close()
 
 try:
 
