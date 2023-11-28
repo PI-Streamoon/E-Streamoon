@@ -84,7 +84,7 @@ conSQLServer = pyodbc.connect(
         )
 
 def dadosEC2(tipo: str, vCPU: int, preco: float, so: str, memoria: float, fkLocais: int):
-    mySql_insert = f"INSERT INTO dadosec2 VALUES (NULL ,'{tipo}', {vCPU}, {preco}, '{so}', {memoria}, {fkLocais});"
+    mySql_insert = f"INSERT INTO dadosec2 (tipo, vcpu, preco, so, ram, fkLocal) VALUES ('{tipo}', {vCPU}, {preco}, '{so}', {memoria}, {fkLocais});"
 
     cursor = con.cursor()
     cursor.execute(mySql_insert)
@@ -131,8 +131,9 @@ def truncate():
     con.commit()
     cursor.close()
     
+    slq_truncate = "DELETE dadosec2;"
     cursorSQL = conSQLServer.cursor()
-    cursorSQL.execute(mysql_truncate)
+    cursorSQL.execute(slq_truncate)
     conSQLServer.commit()    
     cursorSQL.close()
 
