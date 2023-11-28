@@ -88,31 +88,25 @@ def dadosEC2(tipo: str, vCPU: int, preco: float, so: str, memoria: float, fkLoca
 
     cursor = con.cursor()
     cursor.execute(mySql_insert)
-
     con.commit()
+    cursor.close()
     
     cursorSQL = conSQLServer.cursor()
     cursorSQL.execute(mySql_insert)
-
     conSQLServer.commit()
-    
     cursorSQL.close()
-    cursor.close()
     
 def locais(region: str):
     mySql_insert = f"INSERT INTO locais (fkEmpresa, descricao)VALUES (1, '{region}');"
 
     cursor = con.cursor()
     cursor.execute(mySql_insert)
-
     con.commit()
+    cursor.close()
     
     cursorSQL = conSQLServer.cursor()
     cursorSQL.execute(mySql_insert)
-
-    conSQLServer.commit()
-    
-    cursor.close()
+    conSQLServer.commit()    
     cursorSQL.close()
 
 def selecLocais(region: str):
@@ -120,16 +114,13 @@ def selecLocais(region: str):
 
     cursor = con.cursor()
     cursor.execute(mySql_select)
-
     resultado = cursor.fetchall()
+    cursor.close()
     
     cursorSQL = conSQLServer.cursor()
     cursorSQL.execute(mySql_select)
-
     resultadoSLQ = cursorSQL.fetchall()
-
     cursorSQL.close()    
-    cursor.close()
 
     return resultado[0] if resultado else None
 
@@ -137,15 +128,12 @@ def truncate():
     mysql_truncate = "TRUNCATE TABLE dadosec2;"
     cursor = con.cursor()
     cursor.execute(mysql_truncate)
-
     con.commit()
+    cursor.close()
     
     cursorSQL = conSQLServer.cursor()
     cursorSQL.execute(mysql_truncate)
-
-    conSQLServer.commit()
-    
-    cursor.close()
+    conSQLServer.commit()    
     cursorSQL.close()
 
 try:
