@@ -1,8 +1,9 @@
+import pydoc
 import mysql.connector
-ambienteDesenvolvimento = True
+ambienteDesenvolvimento = False
 
 def getCapturaMaisRecenteDaCpu():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='root', password='Kevyn@9566784062@')
+    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
     cursor = conexao.cursor()
 
     if ambienteDesenvolvimento:
@@ -21,7 +22,16 @@ def getCapturaMaisRecenteDaCpu():
         return capturaMaisRecenteCPU
 
 def getCapturaMaisRecenteDaMemoria():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='root', password='Kevyn@9566784062@')
+    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
+    connectionSQLServer = pyodbc.connect(
+            'DRIVER={SQL Server};'
+            'SERVER=18.208.1.120;'
+            'DATABASE=streamoon;'
+            'UID=StreamoonUser;'
+            'PWD=Moon2023;'
+            'TrustServerCertificate=yes;'
+        )
+    
     cursor = conexao.cursor()
 
     if ambienteDesenvolvimento:
@@ -40,7 +50,7 @@ def getCapturaMaisRecenteDaMemoria():
         return capturaMaisRecenteMEMORIA
 
 def getCapturaMaisRecenteDoDisco():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='root', password='Kevyn@9566784062@')
+    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
     cursor = conexao.cursor()
 
     if ambienteDesenvolvimento:
@@ -59,7 +69,7 @@ def getCapturaMaisRecenteDoDisco():
         return capturaMaisRecenteDISCO
 
 def getCapturaMaisRecenteDeUpload():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='root', password='Kevyn@9566784062@')
+    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
     cursor = conexao.cursor()
 
     if ambienteDesenvolvimento:
@@ -78,7 +88,7 @@ def getCapturaMaisRecenteDeUpload():
         return capturaMaisRecenteUPLOAD
 
 def getCapturaMaisRecenteDeDownload():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='root', password='Kevyn@9566784062@')
+    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
     cursor = conexao.cursor()
 
     if ambienteDesenvolvimento:
@@ -97,7 +107,7 @@ def getCapturaMaisRecenteDeDownload():
         return capturaMaisRecenteDOWNLOAD
 
 def getCapturaMaisRecenteDeEntradaDoDisco():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='root', password='Kevyn@9566784062@')
+    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
     cursor = conexao.cursor()
 
     if ambienteDesenvolvimento:
@@ -116,7 +126,7 @@ def getCapturaMaisRecenteDeEntradaDoDisco():
         return capturaMaisRecenteEntradaDISCO
 
 def getCapturaMaisRecenteDeSaidaDoDisco():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='root', password='Kevyn@9566784062@')
+    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
     cursor = conexao.cursor()
 
     if ambienteDesenvolvimento:
@@ -157,13 +167,13 @@ def inserirtAlerta(nomeComponente, isAnalista):
         habilitarInsert = False
 
     if habilitarInsert:
-        conexao = mysql.connector.connect(host='localhost', database='streamoon', user='root', password='Kevyn@9566784062@')
+        conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
         cursor = conexao.cursor()
 
         if ambienteDesenvolvimento:
             queryAlerta = (f"INSERT INTO alertasSlack VALUES (null, '{nomeComponente} ultrapassou as métricas estabelecidas' ,{fkComponente}, {isAnalista}, now())")
         else:
-            queryAlerta = (f"INSERT INTO alertasSlack VALUES (null, '{nomeComponente} ultrapassou as métricas estabelecidas' ,{fkComponente}, {isAnalista}, now())")
+            queryAlerta = (f"INSERT INTO alertasSlack VALUES (null, '{nomeComponente} ultrapassou as métricas estabelecidas' ,{fkComponente}, {isAnalista}, GETDATE())")
 
         try:
             cursor.execute(queryAlerta)
