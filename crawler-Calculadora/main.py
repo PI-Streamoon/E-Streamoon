@@ -96,16 +96,19 @@ def dadosEC2(tipo: str, vCPU: int, preco: float, so: str, memoria: float, fkLoca
     conSQLServer.commit()
     cursorSQL.close()
     
-def locais(region: str):
-    mySql_insert = f"INSERT INTO locais (fkEmpresa, descricao)VALUES (1, '{region}');"
+def locaisLocal(idLocal: int, region: str):
+    mysql_insert = f"INSERT INTO locais (idLocais, fkEmpresa, descricao)VALUES ({idLocal} ,484020, '{region}');"
 
     cursor = con.cursor()
-    cursor.execute(mySql_insert)
+    cursor.execute(mysql_insert)
     con.commit()
     cursor.close()
     
+def locais(region: str):
+    Sql_insert = f"INSERT INTO locais (fkEmpresa, descricao)VALUES (484020, '{region}');"
+
     cursorSQL = conSQLServer.cursor()
-    cursorSQL.execute(mySql_insert)
+    cursorSQL.execute(Sql_insert)
     conSQLServer.commit()    
     cursorSQL.close()
 
@@ -122,7 +125,7 @@ def selecLocais(region: str):
     resultadoSLQ = cursorSQL.fetchall()
     cursorSQL.close()    
 
-    return resultado[0] if resultado else None
+    return resultadoSLQ[0] if resultadoSLQ else None
 
 def truncate():
     mysql_truncate = "TRUNCATE TABLE dadosec2;"
@@ -160,6 +163,7 @@ for i in urls:
                 else:
                     locais(region)
                     fkLocais = selecLocais(region)[0]
+                    locaisLocal(fkLocais, region)
 
             except mysql.connector.errors as error:
                 print("Failed to insert record into table {}".format(error))
