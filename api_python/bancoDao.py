@@ -1,10 +1,16 @@
-import pydoc
+import pyodbc
 import mysql.connector
 ambienteDesenvolvimento = False
 
 def getCapturaMaisRecenteDaCpu():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
-    cursor = conexao.cursor()
+    connectionSQLServer = pyodbc.connect(
+        'DRIVER={SQL Server};'
+        'SERVER=18.208.1.120;'
+        'DATABASE=streamoon;'
+        'UID=StreamoonUser;'
+        'PWD=Moon2023;'
+        'TrustServerCertificate=yes;'
+    )
 
     if ambienteDesenvolvimento:
         queryCPU = ("SELECT registro FROM registro WHERE fkComponenteServidor = 1 ORDER BY dtHora DESC LIMIT 1")
@@ -12,9 +18,9 @@ def getCapturaMaisRecenteDaCpu():
         queryCPU = ("SELECT registro FROM registro WHERE fkComponenteServidor = 1 ORDER BY dtHora DESC TOP 1")
 
     try:
-        cursor.execute(queryCPU)
-        capturaMaisRecenteCPU = cursor.fetchone()[0]
-        cursor.close()
+        connectionSQLServer.execute(queryCPU)
+        capturaMaisRecenteCPU = connectionSQLServer.fetchone()
+        connectionSQLServer.close()
     except:
         capturaMaisRecenteCPU = 0
         return capturaMaisRecenteCPU
@@ -22,7 +28,6 @@ def getCapturaMaisRecenteDaCpu():
         return capturaMaisRecenteCPU
 
 def getCapturaMaisRecenteDaMemoria():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
     connectionSQLServer = pyodbc.connect(
             'DRIVER={SQL Server};'
             'SERVER=18.208.1.120;'
@@ -32,7 +37,6 @@ def getCapturaMaisRecenteDaMemoria():
             'TrustServerCertificate=yes;'
         )
     
-    cursor = conexao.cursor()
 
     if ambienteDesenvolvimento:
         queryMEMORIA = ("SELECT registro FROM registro WHERE fkComponenteServidor = 3 ORDER BY dtHora DESC LIMIT 1")
@@ -40,9 +44,9 @@ def getCapturaMaisRecenteDaMemoria():
         queryMEMORIA = ("SELECT registro FROM registro WHERE fkComponenteServidor = 3 ORDER BY dtHora DESC LIMIT 1")
 
     try:
-        cursor.execute(queryMEMORIA)
-        capturaMaisRecenteMEMORIA = cursor.fetchone()[0]
-        cursor.close()
+        connectionSQLServer.execute(queryMEMORIA)
+        capturaMaisRecenteMEMORIA = connectionSQLServer.fetchone()
+        connectionSQLServer.close()
     except:
         capturaMaisRecenteMEMORIA = 0
         return capturaMaisRecenteMEMORIA
@@ -50,8 +54,14 @@ def getCapturaMaisRecenteDaMemoria():
         return capturaMaisRecenteMEMORIA
 
 def getCapturaMaisRecenteDoDisco():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
-    cursor = conexao.cursor()
+    connectionSQLServer = pyodbc.connect(
+        'DRIVER={SQL Server};'
+        'SERVER=18.208.1.120;'
+        'DATABASE=streamoon;'
+        'UID=StreamoonUser;'
+        'PWD=Moon2023;'
+        'TrustServerCertificate=yes;'
+    )
 
     if ambienteDesenvolvimento:
         queryDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 6 ORDER BY dtHora DESC LIMIT 1")
@@ -59,18 +69,26 @@ def getCapturaMaisRecenteDoDisco():
         queryDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 6 ORDER BY dtHora DESC LIMIT 1")
 
     try:
-        cursor.execute(queryDISCO)
-        capturaMaisRecenteDISCO = cursor.fetchone()[0]
-        cursor.close()
+        connectionSQLServer.execute(queryDISCO)
+        capturaMaisRecenteDISCO = connectionSQLServer.fetchone()
+        connectionSQLServer.close()
     except:
         capturaMaisRecenteDISCO = 0
         return capturaMaisRecenteDISCO
     else:
         return capturaMaisRecenteDISCO
+    
+    
 
 def getCapturaMaisRecenteDeUpload():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
-    cursor = conexao.cursor()
+    connectionSQLServer = pyodbc.connect(
+        'DRIVER={SQL Server};'
+        'SERVER=18.208.1.120;'
+        'DATABASE=streamoon;'
+        'UID=StreamoonUser;'
+        'PWD=Moon2023;'
+        'TrustServerCertificate=yes;'
+    )
 
     if ambienteDesenvolvimento:
         queryUPLOAD = ("SELECT registro FROM registro WHERE fkComponenteServidor = 9 ORDER BY dtHora DESC LIMIT 1")
@@ -78,9 +96,9 @@ def getCapturaMaisRecenteDeUpload():
         queryUPLOAD = ("SELECT registro FROM registro WHERE fkComponenteServidor = 9 ORDER BY dtHora DESC LIMIT 1")
 
     try:
-        cursor.execute(queryUPLOAD)
-        capturaMaisRecenteUPLOAD = cursor.fetchone()[0]
-        cursor.close()
+        connectionSQLServer.execute()(queryUPLOAD)
+        capturaMaisRecenteUPLOAD = connectionSQLServer.fetchone()[0]
+        connectionSQLServer.close()
     except:
         capturaMaisRecenteUPLOAD = 0
         return capturaMaisRecenteUPLOAD
@@ -88,8 +106,14 @@ def getCapturaMaisRecenteDeUpload():
         return capturaMaisRecenteUPLOAD
 
 def getCapturaMaisRecenteDeDownload():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
-    cursor = conexao.cursor()
+    connectionSQLServer = pyodbc.connect(
+        'DRIVER={SQL Server};'
+        'SERVER=18.208.1.120;'
+        'DATABASE=streamoon;'
+        'UID=StreamoonUser;'
+        'PWD=Moon2023;'
+        'TrustServerCertificate=yes;'
+    )
 
     if ambienteDesenvolvimento:
         queryDOWNLOAD = ("SELECT registro FROM registro WHERE fkComponenteServidor = 10 ORDER BY dtHora DESC LIMIT 1")
@@ -97,9 +121,9 @@ def getCapturaMaisRecenteDeDownload():
         queryDOWNLOAD = ("SELECT registro FROM registro WHERE fkComponenteServidor = 10 ORDER BY dtHora DESC TOP 1")
 
     try:
-        cursor.execute(queryDOWNLOAD)
-        capturaMaisRecenteDOWNLOAD = cursor.fetchone()[0]
-        cursor.close()
+        connectionSQLServer.execute()(queryDOWNLOAD)
+        capturaMaisRecenteDOWNLOAD = connectionSQLServer.fetchone()[0]
+        connectionSQLServer.close()
     except:
         capturaMaisRecenteDOWNLOAD = 0
         return capturaMaisRecenteDOWNLOAD
@@ -107,8 +131,14 @@ def getCapturaMaisRecenteDeDownload():
         return capturaMaisRecenteDOWNLOAD
 
 def getCapturaMaisRecenteDeEntradaDoDisco():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
-    cursor = conexao.cursor()
+    connectionSQLServer = pyodbc.connect(
+        'DRIVER={SQL Server};'
+        'SERVER=18.208.1.120;'
+        'DATABASE=streamoon;'
+        'UID=StreamoonUser;'
+        'PWD=Moon2023;'
+        'TrustServerCertificate=yes;'
+    )
 
     if ambienteDesenvolvimento:
         queryEntradaDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 7 ORDER BY dtHora DESC LIMIT 1")
@@ -116,9 +146,9 @@ def getCapturaMaisRecenteDeEntradaDoDisco():
         queryEntradaDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 7 ORDER BY dtHora DESC LIMIT 1")
 
     try:
-        cursor.execute(queryEntradaDISCO)
-        capturaMaisRecenteEntradaDISCO = cursor.fetchone()[0]
-        cursor.close()
+        connectionSQLServer.execute()(queryEntradaDISCO)
+        capturaMaisRecenteEntradaDISCO = connectionSQLServer.fetchone()[0]
+        connectionSQLServer.close()
     except:
         capturaMaisRecenteEntradaDISCO = 0
         return capturaMaisRecenteEntradaDISCO
@@ -126,8 +156,14 @@ def getCapturaMaisRecenteDeEntradaDoDisco():
         return capturaMaisRecenteEntradaDISCO
 
 def getCapturaMaisRecenteDeSaidaDoDisco():
-    conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
-    cursor = conexao.cursor()
+    connectionSQLServer = pyodbc.connect(
+            'DRIVER={SQL Server};'
+            'SERVER=18.208.1.120;'
+            'DATABASE=streamoon;'
+            'UID=StreamoonUser;'
+            'PWD=Moon2023;'
+            'TrustServerCertificate=yes;'
+        )
 
     if ambienteDesenvolvimento:
         querySaidaDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 8 ORDER BY dtHora DESC LIMIT 1")
@@ -135,9 +171,9 @@ def getCapturaMaisRecenteDeSaidaDoDisco():
         querySaidaDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 8 ORDER BY dtHora DESC LIMIT 1")
 
     try:
-        cursor.execute(querySaidaDISCO)
-        capturaMaisRecenteSaidaDISCO = cursor.fetchone()[0]
-        cursor.close()
+        connectionSQLServer.execute()(querySaidaDISCO)
+        capturaMaisRecenteSaidaDISCO = connectionSQLServer.fetchone()[0]
+        connectionSQLServer.close()
     except:
         capturaMaisRecenteSaidaDISCO = 0
         return capturaMaisRecenteSaidaDISCO
@@ -167,8 +203,15 @@ def inserirtAlerta(nomeComponente, isAnalista):
         habilitarInsert = False
 
     if habilitarInsert:
-        conexao = mysql.connector.connect(host='localhost', database='streamoon', user='StreamoonUser', password='Moon2023')
-        cursor = conexao.cursor()
+        connectionSQLServer = pyodbc.connect(
+        'DRIVER={SQL Server};'
+        'SERVER=18.208.1.120;'
+        'DATABASE=streamoon;'
+        'UID=StreamoonUser;'
+        'PWD=Moon2023;'
+        'TrustServerCertificate=yes;'
+        )
+
 
         if ambienteDesenvolvimento:
             queryAlerta = (f"INSERT INTO alertasSlack VALUES (null, '{nomeComponente} ultrapassou as métricas estabelecidas' ,{fkComponente}, {isAnalista}, now())")
@@ -176,9 +219,10 @@ def inserirtAlerta(nomeComponente, isAnalista):
             queryAlerta = (f"INSERT INTO alertasSlack VALUES (null, '{nomeComponente} ultrapassou as métricas estabelecidas' ,{fkComponente}, {isAnalista}, GETDATE())")
 
         try:
-            cursor.execute(queryAlerta)
-            conexao.commit()
-            cursor.close()
+            connectionSQLServer.execute(queryAlerta)
+            connectionSQLServer.commit()
+
+            connectionSQLServer.close()
             print("Ok!")
         except:
             print("Houve um erro na instrução SQL ou no Banco de dados, pois não foi possível inserir o alerta no banco")
