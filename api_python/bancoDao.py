@@ -11,23 +11,17 @@ def getCapturaMaisRecenteDaCpu():
         'PWD=Moon2023;'
         'TrustServerCertificate=yes;'
     )
-
     cursor = connectionSQLServer.cursor()
+    subquery = ("SELECT registro, ROW_NUMBER() OVER (ORDER BY dtHora DESC) AS RowNum "
+                "FROM registro WHERE fkComponenteServidor = 1")
 
-    if ambienteDesenvolvimento:
-        queryCPU = ("SELECT registro FROM registro WHERE fkComponenteServidor = 1 ORDER BY dtHora DESC LIMIT 1")
-    else:
-        queryCPU = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 1 ORDER BY dtHora ")
-
-    try:
-        cursor.execute(queryCPU)
-        capturaMaisRecenteCPU = connectionSQLServer.fetchone()[0]
-        cursor.close()
-    except:
-        capturaMaisRecenteCPU = 0
-        return capturaMaisRecenteCPU
-    else:
-        return capturaMaisRecenteCPU
+    queryCPU = ("SELECT registro FROM (" + subquery + ") AS tempTable WHERE RowNum = 1")
+   
+    cursor.execute(queryCPU)
+    capturaMaisRecenteCPU = cursor.fetchone()[0]
+    cursor.close()
+    connectionSQLServer.close()
+    return capturaMaisRecenteCPU
 
 def getCapturaMaisRecenteDaMemoria():
     connectionSQLServer = pyodbc.connect(
@@ -38,24 +32,18 @@ def getCapturaMaisRecenteDaMemoria():
             'PWD=Moon2023;'
             'TrustServerCertificate=yes;'
         )
-    
+   
     cursor = connectionSQLServer.cursor()
-    
+    subquery = ("SELECT registro, ROW_NUMBER() OVER (ORDER BY dtHora DESC) AS RowNum "
+                "FROM registro WHERE fkComponenteServidor = 3")
 
-    if ambienteDesenvolvimento:
-        queryMEMORIA = ("SELECT registro FROM registro WHERE fkComponenteServidor = 3 ORDER BY dtHora DESC LIMIT 1")
-    else:
-        queryMEMORIA = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 3 ORDER BY dtHora ")
-
-    try:
-        cursor.execute(queryMEMORIA)
-        capturaMaisRecenteMEMORIA = connectionSQLServer.fetchone()[0]
-        cursor.close()
-    except:
-        capturaMaisRecenteMEMORIA = 0
-        return capturaMaisRecenteMEMORIA
-    else:
-        return capturaMaisRecenteMEMORIA
+    queryMEMORIA = ("SELECT registro FROM (" + subquery + ") AS tempTable WHERE RowNum = 1")
+   
+    cursor.execute(queryMEMORIA)
+    capturaMaisRecenteMEMORIA = cursor.fetchone()[0]
+    cursor.close()
+    connectionSQLServer.close()
+    return capturaMaisRecenteMEMORIA
 
 def getCapturaMaisRecenteDoDisco():
     connectionSQLServer = pyodbc.connect(
@@ -68,23 +56,18 @@ def getCapturaMaisRecenteDoDisco():
     )
 
     cursor = connectionSQLServer.cursor()
+    subquery = ("SELECT registro, ROW_NUMBER() OVER (ORDER BY dtHora DESC) AS RowNum "
+                "FROM registro WHERE fkComponenteServidor = 6")
 
-    if ambienteDesenvolvimento:
-        queryDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 6 ORDER BY dtHora DESC LIMIT 1")
-    else:
-        queryDISCO = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 6 ORDER BY dtHora ")
-
-    try:
-        cursor.execute(queryDISCO)
-        capturaMaisRecenteDISCO = connectionSQLServer.fetchone()[0]
-        cursor.close()
-    except:
-        capturaMaisRecenteDISCO = 0
-        return capturaMaisRecenteDISCO
-    else:
-        return capturaMaisRecenteDISCO
-    
-    
+    queryDISCO = ("SELECT registro FROM (" + subquery + ") AS tempTable WHERE RowNum = 1")
+   
+    cursor.execute(queryDISCO)
+    capturaMaisRecenteDISCO = cursor.fetchone()[0]
+    cursor.close()
+    connectionSQLServer.close()
+    return capturaMaisRecenteDISCO
+   
+   
 
 def getCapturaMaisRecenteDeUpload():
     connectionSQLServer = pyodbc.connect(
@@ -97,21 +80,16 @@ def getCapturaMaisRecenteDeUpload():
     )
 
     cursor = connectionSQLServer.cursor()
+    subquery = ("SELECT registro, ROW_NUMBER() OVER (ORDER BY dtHora DESC) AS RowNum "
+                "FROM registro WHERE fkComponenteServidor = 9")
 
-    if ambienteDesenvolvimento:
-        queryUPLOAD = ("SELECT registro FROM registro WHERE fkComponenteServidor = 9 ORDER BY dtHora DESC LIMIT 1")
-    else:
-        queryUPLOAD = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 9 ORDER BY dtHora ")
-
-    try:
-        cursor.execute()(queryUPLOAD)
-        capturaMaisRecenteUPLOAD = connectionSQLServer.fetchone()[0]
-        cursor.close()
-    except:
-        capturaMaisRecenteUPLOAD = 0
-        return capturaMaisRecenteUPLOAD
-    else:
-        return capturaMaisRecenteUPLOAD
+    queryUPLOAD = ("SELECT registro FROM (" + subquery + ") AS tempTable WHERE RowNum = 1")
+   
+    cursor.execute(queryUPLOAD)
+    capturaMaisRecenteUPLOAD = cursor.fetchone()[0]
+    cursor.close()
+    connectionSQLServer.close()
+    return capturaMaisRecenteUPLOAD
 
 def getCapturaMaisRecenteDeDownload():
     connectionSQLServer = pyodbc.connect(
@@ -124,21 +102,17 @@ def getCapturaMaisRecenteDeDownload():
     )
 
     cursor = connectionSQLServer.cursor()
+    subquery = ("SELECT registro, ROW_NUMBER() OVER (ORDER BY dtHora DESC) AS RowNum "
+                "FROM registro WHERE fkComponenteServidor = 10")
 
-    if ambienteDesenvolvimento:
-        queryDOWNLOAD = ("SELECT registro FROM registro WHERE fkComponenteServidor = 10 ORDER BY dtHora DESC LIMIT 1")
-    else:
-        queryDOWNLOAD = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 10 ORDER BY dtHora ")
+    queryDOWNLOAD = ("SELECT registro FROM (" + subquery + ") AS tempTable WHERE RowNum = 1")
+   
+    cursor.execute(queryDOWNLOAD)
+    capturaMaisRecenteDOWNLOAD = cursor.fetchone()[0]
+    cursor.close()
+    connectionSQLServer.close()
+    return capturaMaisRecenteDOWNLOAD
 
-    try:
-        cursor.execute()(queryDOWNLOAD)
-        capturaMaisRecenteDOWNLOAD = connectionSQLServer.fetchone()[0]
-        cursor.close()
-    except:
-        capturaMaisRecenteDOWNLOAD = 0
-        return capturaMaisRecenteDOWNLOAD
-    else:
-        return capturaMaisRecenteDOWNLOAD
 
 def getCapturaMaisRecenteDeEntradaDoDisco():
     connectionSQLServer = pyodbc.connect(
@@ -149,23 +123,17 @@ def getCapturaMaisRecenteDeEntradaDoDisco():
         'PWD=Moon2023;'
         'TrustServerCertificate=yes;'
     )
-
     cursor = connectionSQLServer.cursor()
+    subquery = ("SELECT registro, ROW_NUMBER() OVER (ORDER BY dtHora DESC) AS RowNum "
+                "FROM registro WHERE fkComponenteServidor = 7")
 
-    if ambienteDesenvolvimento:
-        queryEntradaDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 7 ORDER BY dtHora DESC LIMIT 1")
-    else:
-        queryEntradaDISCO = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 7 ORDER BY dtHora ")
-
-    try:
-        cursor.execute()(queryEntradaDISCO)
-        capturaMaisRecenteEntradaDISCO = connectionSQLServer.fetchone()[0]
-        cursor.close()
-    except:
-        capturaMaisRecenteEntradaDISCO = 0
-        return capturaMaisRecenteEntradaDISCO
-    else:
-        return capturaMaisRecenteEntradaDISCO
+    queryEntradaDisco = ("SELECT registro FROM (" + subquery + ") AS tempTable WHERE RowNum = 1")
+   
+    cursor.execute(queryEntradaDisco)
+    capturaMaisRecenteEntradaDisco = cursor.fetchone()[0]
+    cursor.close()
+    connectionSQLServer.close()
+    return capturaMaisRecenteEntradaDisco
 
 def getCapturaMaisRecenteDeSaidaDoDisco():
     connectionSQLServer = pyodbc.connect(
@@ -176,28 +144,21 @@ def getCapturaMaisRecenteDeSaidaDoDisco():
             'PWD=Moon2023;'
             'TrustServerCertificate=yes;'
         )
-    
+   
     cursor = connectionSQLServer.cursor()
+    subquery = ("SELECT registro, ROW_NUMBER() OVER (ORDER BY dtHora DESC) AS RowNum "
+                "FROM registro WHERE fkComponenteServidor = 8")
 
-    if ambienteDesenvolvimento:
-        querySaidaDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 8 ORDER BY dtHora DESC LIMIT 1")
-    else:
-        querySaidaDISCO = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 8 ORDER BY dtHora ")
-
-    try:
-        cursor.execute()(querySaidaDISCO)
-        capturaMaisRecenteSaidaDISCO = connectionSQLServer.fetchone()[0]
-        cursor.close()
-    except:
-        capturaMaisRecenteSaidaDISCO = 0
-        return capturaMaisRecenteSaidaDISCO
-    else:
-        return capturaMaisRecenteSaidaDISCO
+    queryUPLOAD = ("SELECT registro FROM (" + subquery + ") AS tempTable WHERE RowNum = 1")
+   
+    cursor.execute(queryUPLOAD)
+    capturaMaisRecenteUPLOAD = cursor.fetchone()[0]
+    cursor.close()
+    connectionSQLServer.close()
+    return capturaMaisRecenteUPLOAD
 
 def inserirtAlerta(nomeComponente, isAnalista):
 
-    habilitarInsert = True
-    fkComponente = 0
     if nomeComponente == "cpu":
         fkComponente = 100
     elif nomeComponente == "memoria":
@@ -214,34 +175,24 @@ def inserirtAlerta(nomeComponente, isAnalista):
         fkComponente = 107
     else:
         print(f"Não foi encontrado nenhum componente com o nome: {nomeComponente}")
-        habilitarInsert = False
+        return
 
-    if habilitarInsert:
-        connectionSQLServer = pyodbc.connect(
+    connectionSQLServer = pyodbc.connect(
         'DRIVER={SQL Server};'
         'SERVER=18.208.1.120;'
         'DATABASE=streamoon;'
         'UID=StreamoonUser;'
         'PWD=Moon2023;'
         'TrustServerCertificate=yes;'
-        )
+    )
 
-        cursor = connectionSQLServer.cursor()
+    cursor = connectionSQLServer.cursor()
 
+    queryAlerta = (f"INSERT INTO alertasSlack (descricao, fkComponente, isAnalista, dtHora) "
+                    f"VALUES ('{nomeComponente}', {fkComponente}, {isAnalista}, GETDATE())")
 
-        if ambienteDesenvolvimento:
-            queryAlerta = (f"INSERT INTO alertasSlack VALUES (null, '{nomeComponente} ultrapassou as métricas estabelecidas' ,{fkComponente}, {isAnalista}, now())")
-        else:
-            queryAlerta = (f"INSERT INTO alertasSlack VALUES (null, '{nomeComponente} ultrapassou as métricas estabelecidas' ,{fkComponente}, {isAnalista}, GETDATE())")
-
-        try:
-            cursor.execute(queryAlerta)
-            connectionSQLServer.commitcursor
-
-            cursor.commit()
-            connectionSQLServer.close()
-            print("Ok!")
-        except:
-            print("Houve um erro na instrução SQL ou no Banco de dados, pois não foi possível inserir o alerta no banco")
-    else:
-            print("Insert foi bloqueado pela aplicação")
+    cursor.execute(queryAlerta)
+    connectionSQLServer.commit()
+    cursor.close()
+    connectionSQLServer.close()
+    print(f"Alerta de {nomeComponente} inserido no banco!!!")

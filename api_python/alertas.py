@@ -5,26 +5,26 @@ ativarMensagensDeErroNoTerminal = False
 
 alertaCpu = {"text": f"""        
         🚨ALERTA CPU🚨    
-    Cpu ultrapassou a métrica de 60% 
+    Cpu ultrapassou a métrica de 60%
 """}
 
-alertaMemoria = {"text": f""" 
+alertaMemoria = {"text": f"""
          🚨ALERTA MEMÓRIA🚨      
     Memória ultrapassou a métrica de 70%    
 """}
 
 alertaDisco = {"text": f"""          
-         🚨ALERTA DISCO🚨     
+         🚨ALERTA DISCO🚨    
     Disco ultrapassou a métrica de 40%    
 """}
 
 alertaUpload = {"text": f"""          
          🚨ALERTA UPLOAD🚨      
-    Upload ultrapassou a métrica de 80%   
+    Upload ultrapassou a métrica de 80%  
 """}
 
 alertaDownload = {"text": f"""          
-          🚨ALERTA DOWNLOAD🚨       
+          🚨ALERTA DOWNLOAD🚨      
     Download ultrapassou a métrica de 75%      
 """}
 
@@ -35,7 +35,7 @@ alertaEntradaDisco = {"text": f"""
 
 alertaSaidaDisco = {"text": f"""          
             🚨ALERTA SAIDA DE DISCO🚨          
-    SAIDA DE DISCO ultrapassou a métrica de 85%         
+    SAIDA DE DISCO ultrapassou a métrica de 85%        
 """}
 
 def enviarAlertaCpu(UrlDoChat):

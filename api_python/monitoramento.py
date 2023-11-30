@@ -9,10 +9,10 @@ qtdAlertasEmSequenciaUpload = 0
 qtdAlertasEmSequenciaDownload = 0
 qtdAlertasEmSequenciaEntradaDisco = 0
 qtdAlertasEmSequenciaSaidaDisco = 0
-temporizador = 0
+temporizador = 2
 
-chatAnalista = "https://hooks.slack.com/services/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"
-chatManutencao = "https://hooks.slack.com/services/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"
+chatAnalista = "https://hooks.slack.com/services/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"
+chatManutencao = "https://hooks.slack.com/services/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"
 
 print( "-"*40, " Últimos Dados Captados ", "-"*40)
 
@@ -24,15 +24,15 @@ while True:
     download = bancoDao.getCapturaMaisRecenteDeDownload()
     entradaDisco = bancoDao.getCapturaMaisRecenteDeEntradaDoDisco()
     saidaDisco = bancoDao.getCapturaMaisRecenteDeSaidaDoDisco()
-    
+   
     print("Cpu: ", cpu, " Memória: ", memoria," Disco: ", disco, " Upload: ",
     upload, " Download: ", download, " EntradaDisco: ", entradaDisco, " Saída: ", saidaDisco)
 
-    if temporizador == 30:
+    if temporizador == 5:
 
         if cpu > 60:
 
-            if qtdAlertasEmSequenciaCpu < 3:
+            if qtdAlertasEmSequenciaCpu < 2:
                 alertas.enviarAlertaCpu(chatManutencao)
                 bancoDao.inserirtAlerta("cpu", 0)
                 qtdAlertasEmSequenciaCpu += 1
@@ -42,7 +42,7 @@ while True:
                 qtdAlertasEmSequenciaCpu += 1
         else:
             qtdAlertasEmSequenciaCpu = 0
-        
+       
         if memoria > 70:
 
             if qtdAlertasEmSequenciaMemoria < 3:
@@ -81,7 +81,7 @@ while True:
                 qtdAlertasEmSequenciaUpload += 1
         else:
             qtdAlertasEmSequenciaUpload = 0
-        
+       
         if download > 75:
 
             if qtdAlertasEmSequenciaDownload < 3:
@@ -94,7 +94,7 @@ while True:
                 qtdAlertasEmSequenciaDownload += 1
         else:
             qtdAlertasEmSequenciaDownload = 0
-        
+       
         if entradaDisco > 85:
 
             if qtdAlertasEmSequenciaEntradaDisco < 3:
@@ -109,7 +109,7 @@ while True:
             qtdAlertasEmSequenciaEntradaDisco = 0
 
         if saidaDisco > 85:
-            
+           
             if qtdAlertasEmSequenciaSaidaDisco < 3:
                 alertas.enviarAlertaSaidaDisco(chatManutencao)
                 bancoDao.inserirtAlerta("saidaDisco", 0)
@@ -120,9 +120,8 @@ while True:
                 qtdAlertasEmSequenciaSaidaDisco += 1
         else:
             qtdAlertasEmSequenciaSaidaDisco = 0
-        
+       
         temporizador = 0
 
     temporizador += 1
     sleep(1)
-    
