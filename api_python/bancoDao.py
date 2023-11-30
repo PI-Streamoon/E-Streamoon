@@ -12,15 +12,17 @@ def getCapturaMaisRecenteDaCpu():
         'TrustServerCertificate=yes;'
     )
 
+    cursor = connectionSQLServer.cursor()
+
     if ambienteDesenvolvimento:
         queryCPU = ("SELECT registro FROM registro WHERE fkComponenteServidor = 1 ORDER BY dtHora DESC LIMIT 1")
     else:
-        queryCPU = ("SELECT registro FROM registro WHERE fkComponenteServidor = 1 ORDER BY dtHora DESC TOP 1")
+        queryCPU = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 1 ORDER BY dtHora ")
 
     try:
-        connectionSQLServer.execute(queryCPU)
-        capturaMaisRecenteCPU = connectionSQLServer.fetchone()
-        connectionSQLServer.close()
+        cursor.execute(queryCPU)
+        capturaMaisRecenteCPU = connectionSQLServer.fetchone()[0]
+        cursor.close()
     except:
         capturaMaisRecenteCPU = 0
         return capturaMaisRecenteCPU
@@ -37,16 +39,18 @@ def getCapturaMaisRecenteDaMemoria():
             'TrustServerCertificate=yes;'
         )
     
+    cursor = connectionSQLServer.cursor()
+    
 
     if ambienteDesenvolvimento:
         queryMEMORIA = ("SELECT registro FROM registro WHERE fkComponenteServidor = 3 ORDER BY dtHora DESC LIMIT 1")
     else:
-        queryMEMORIA = ("SELECT registro FROM registro WHERE fkComponenteServidor = 3 ORDER BY dtHora DESC LIMIT 1")
+        queryMEMORIA = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 3 ORDER BY dtHora ")
 
     try:
-        connectionSQLServer.execute(queryMEMORIA)
-        capturaMaisRecenteMEMORIA = connectionSQLServer.fetchone()
-        connectionSQLServer.close()
+        cursor.execute(queryMEMORIA)
+        capturaMaisRecenteMEMORIA = connectionSQLServer.fetchone()[0]
+        cursor.close()
     except:
         capturaMaisRecenteMEMORIA = 0
         return capturaMaisRecenteMEMORIA
@@ -63,15 +67,17 @@ def getCapturaMaisRecenteDoDisco():
         'TrustServerCertificate=yes;'
     )
 
+    cursor = connectionSQLServer.cursor()
+
     if ambienteDesenvolvimento:
         queryDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 6 ORDER BY dtHora DESC LIMIT 1")
     else:
-        queryDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 6 ORDER BY dtHora DESC LIMIT 1")
+        queryDISCO = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 6 ORDER BY dtHora ")
 
     try:
-        connectionSQLServer.execute(queryDISCO)
-        capturaMaisRecenteDISCO = connectionSQLServer.fetchone()
-        connectionSQLServer.close()
+        cursor.execute(queryDISCO)
+        capturaMaisRecenteDISCO = connectionSQLServer.fetchone()[0]
+        cursor.close()
     except:
         capturaMaisRecenteDISCO = 0
         return capturaMaisRecenteDISCO
@@ -90,15 +96,17 @@ def getCapturaMaisRecenteDeUpload():
         'TrustServerCertificate=yes;'
     )
 
+    cursor = connectionSQLServer.cursor()
+
     if ambienteDesenvolvimento:
         queryUPLOAD = ("SELECT registro FROM registro WHERE fkComponenteServidor = 9 ORDER BY dtHora DESC LIMIT 1")
     else:
-        queryUPLOAD = ("SELECT registro FROM registro WHERE fkComponenteServidor = 9 ORDER BY dtHora DESC LIMIT 1")
+        queryUPLOAD = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 9 ORDER BY dtHora ")
 
     try:
-        connectionSQLServer.execute()(queryUPLOAD)
+        cursor.execute()(queryUPLOAD)
         capturaMaisRecenteUPLOAD = connectionSQLServer.fetchone()[0]
-        connectionSQLServer.close()
+        cursor.close()
     except:
         capturaMaisRecenteUPLOAD = 0
         return capturaMaisRecenteUPLOAD
@@ -115,15 +123,17 @@ def getCapturaMaisRecenteDeDownload():
         'TrustServerCertificate=yes;'
     )
 
+    cursor = connectionSQLServer.cursor()
+
     if ambienteDesenvolvimento:
         queryDOWNLOAD = ("SELECT registro FROM registro WHERE fkComponenteServidor = 10 ORDER BY dtHora DESC LIMIT 1")
     else:
-        queryDOWNLOAD = ("SELECT registro FROM registro WHERE fkComponenteServidor = 10 ORDER BY dtHora DESC TOP 1")
+        queryDOWNLOAD = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 10 ORDER BY dtHora ")
 
     try:
-        connectionSQLServer.execute()(queryDOWNLOAD)
+        cursor.execute()(queryDOWNLOAD)
         capturaMaisRecenteDOWNLOAD = connectionSQLServer.fetchone()[0]
-        connectionSQLServer.close()
+        cursor.close()
     except:
         capturaMaisRecenteDOWNLOAD = 0
         return capturaMaisRecenteDOWNLOAD
@@ -140,15 +150,17 @@ def getCapturaMaisRecenteDeEntradaDoDisco():
         'TrustServerCertificate=yes;'
     )
 
+    cursor = connectionSQLServer.cursor()
+
     if ambienteDesenvolvimento:
         queryEntradaDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 7 ORDER BY dtHora DESC LIMIT 1")
     else:
-        queryEntradaDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 7 ORDER BY dtHora DESC LIMIT 1")
+        queryEntradaDISCO = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 7 ORDER BY dtHora ")
 
     try:
-        connectionSQLServer.execute()(queryEntradaDISCO)
+        cursor.execute()(queryEntradaDISCO)
         capturaMaisRecenteEntradaDISCO = connectionSQLServer.fetchone()[0]
-        connectionSQLServer.close()
+        cursor.close()
     except:
         capturaMaisRecenteEntradaDISCO = 0
         return capturaMaisRecenteEntradaDISCO
@@ -164,16 +176,18 @@ def getCapturaMaisRecenteDeSaidaDoDisco():
             'PWD=Moon2023;'
             'TrustServerCertificate=yes;'
         )
+    
+    cursor = connectionSQLServer.cursor()
 
     if ambienteDesenvolvimento:
         querySaidaDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 8 ORDER BY dtHora DESC LIMIT 1")
     else:
-        querySaidaDISCO = ("SELECT registro FROM registro WHERE fkComponenteServidor = 8 ORDER BY dtHora DESC LIMIT 1")
+        querySaidaDISCO = ("SELECT TOP 1 registro FROM registro WHERE fkComponenteServidor = 8 ORDER BY dtHora ")
 
     try:
-        connectionSQLServer.execute()(querySaidaDISCO)
+        cursor.execute()(querySaidaDISCO)
         capturaMaisRecenteSaidaDISCO = connectionSQLServer.fetchone()[0]
-        connectionSQLServer.close()
+        cursor.close()
     except:
         capturaMaisRecenteSaidaDISCO = 0
         return capturaMaisRecenteSaidaDISCO
@@ -212,6 +226,8 @@ def inserirtAlerta(nomeComponente, isAnalista):
         'TrustServerCertificate=yes;'
         )
 
+        cursor = connectionSQLServer.cursor()
+
 
         if ambienteDesenvolvimento:
             queryAlerta = (f"INSERT INTO alertasSlack VALUES (null, '{nomeComponente} ultrapassou as métricas estabelecidas' ,{fkComponente}, {isAnalista}, now())")
@@ -219,9 +235,10 @@ def inserirtAlerta(nomeComponente, isAnalista):
             queryAlerta = (f"INSERT INTO alertasSlack VALUES (null, '{nomeComponente} ultrapassou as métricas estabelecidas' ,{fkComponente}, {isAnalista}, GETDATE())")
 
         try:
-            connectionSQLServer.execute(queryAlerta)
-            connectionSQLServer.commit()
+            cursor.execute(queryAlerta)
+            connectionSQLServer.commitcursor
 
+            cursor.commit()
             connectionSQLServer.close()
             print("Ok!")
         except:
